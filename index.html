@@ -19,12 +19,12 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            color: #ffffff;
             overflow: hidden;
             position: relative;
         }
 
         .container {
+            width: 100%;
             max-width: 700px;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -45,12 +45,11 @@
 
         h1 {
             text-align: center;
-            color: #000000; /* TÍTULO EN NEGRO */
+            color: #000000;
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
             margin-bottom: 30px;
             position: relative;
-            text-shadow: none; /* evita incandilar sobre blanco */
         }
 
         h1::after {
@@ -73,7 +72,7 @@
 
         textarea {
             resize: vertical;
-            min-height: 200px;
+            min-height: 260px; /* MÁS ALTO EN DESKTOP */
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(13, 110, 253, 0.5);
@@ -82,7 +81,7 @@
 
         .btn-primary {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             font-size: 18px;
             font-weight: 600;
             border-radius: 10px;
@@ -106,6 +105,37 @@
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
+        }
+
+        /* ==========================
+           RESPONSIVE (CELULARES)
+           ========================== */
+        @media (max-width: 576px) {
+            body {
+                padding: 12px;
+            }
+
+            .container {
+                padding: 24px;
+                border-radius: 16px;
+            }
+
+            h1 {
+                font-size: 1.3rem;
+            }
+
+            textarea {
+                min-height: 300px; /* MÁS ALTO EN MOBILE */
+            }
+
+            .btn-primary {
+                font-size: 16px;
+                padding: 12px;
+            }
+
+            .icon-header i {
+                font-size: 42px;
+            }
         }
     </style>
 </head>
