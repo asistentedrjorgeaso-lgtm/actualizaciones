@@ -1,0 +1,15 @@
+{
+  "name": "Actualizaciones Dr. Jorge Aso",
+  "short_name": "Actualizaciones",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "https://asistentedrjorgeaso-lgtm.github.io/actualizaciones/icono.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
