@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,50 +12,95 @@
 
     <style>
         body {
-            background: #ffffff; /* fondo blanco */
+            background: #ffffff; /* FONDO BLANCO */
             font-family: 'Poppins', sans-serif;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            color: #212529;
+            color: #ffffff;
+            overflow: hidden;
+            position: relative;
         }
 
-        /* eliminado body::before (gráficos de fondo) */
+        /* SE ELIMINA SOLO EL GRÁFICO DEL FONDO */
+        /* body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"%3E%3Cpath fill="%23ffffff" fill-opacity="0.05" d="M0 0h80v80H0z"/%3E%3Cpath fill="%23ffffff" fill-opacity="0.1" d="M40 0l40 40-40 40-40-40z"/%3E%3C/svg%3E') repeat;
+            z-index: 0;
+        } */
 
         .container {
             max-width: 700px;
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                        0 0 20px rgba(0, 123, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6),
+                        0 0 30px rgba(0, 123, 255, 0.5);
         }
 
         h1 {
             text-align: center;
-            color: #0d6efd;
+            color: #00c6ff;
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
             margin-bottom: 30px;
+            position: relative;
+            text-shadow: 0 0 10px rgba(0, 198, 255, 0.7);
+        }
+
+        h1::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #007bff, #00c6ff);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px #007bff;
         }
 
         .form-label {
             font-weight: 600;
-            color: #0d6efd;
+            color: #00c6ff;
+            text-shadow: 0 0 5px rgba(0, 198, 255, 0.5);
         }
 
         textarea {
             resize: vertical;
             min-height: 200px;
             border-radius: 10px;
-            background: #ffffff;
-            border: 1px solid #ced4da;
-            color: #212529;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 123, 255, 0.5);
+            color: #ffffff;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         textarea::placeholder {
-            color: #6c757d;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        textarea:focus {
+            border-color: #00c6ff;
+            box-shadow: 0 0 0 0.25rem rgba(0, 198, 255, 0.25),
+                        0 0 15px rgba(0, 198, 255, 0.5);
         }
 
         .btn-primary {
@@ -63,6 +109,23 @@
             font-size: 18px;
             font-weight: 600;
             border-radius: 10px;
+            background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+            border: none;
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #00c6ff 0%, #007bff 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 198, 255, 0.7);
+        }
+
+        .btn-primary:disabled {
+            background: linear-gradient(90deg, #6c757d 0%, #495057 100%);
+            cursor: not-allowed;
+            box-shadow: none;
         }
 
         #status {
@@ -71,12 +134,28 @@
             font-weight: 600;
             padding: 10px;
             border-radius: 10px;
-            background: #f8f9fa;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid transparent;
         }
 
-        .success { color: #198754; }
-        .error { color: #dc3545; }
-        .loading { color: #ffc107; }
+        .success {
+            color: #00ff85;
+            border-color: #00ff85;
+            box-shadow: 0 0 10px #00ff85;
+        }
+
+        .error {
+            color: #ff4d4d;
+            border-color: #ff4d4d;
+            box-shadow: 0 0 10px #ff4d4d;
+        }
+
+        .loading {
+            color: #ffd700;
+            border-color: #ffd700;
+            box-shadow: 0 0 10px #ffd700;
+        }
 
         .icon-header {
             text-align: center;
@@ -85,7 +164,15 @@
 
         .icon-header i {
             font-size: 50px;
-            color: #0d6efd;
+            color: #00c6ff;
+            text-shadow: 0 0 15px rgba(0, 198, 255, 0.7);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
@@ -102,7 +189,7 @@
         <form id="updateForm">
             <div class="mb-3">
                 <label for="instruction" class="form-label">Nueva Instrucción o Actualización</label>
-                <textarea class="form-control" id="instruction" placeholder="Escribe la nueva instrucción aquí..." required></textarea>
+                <textarea class="form-control" id="instruction" rows="6" placeholder="Escribe la nueva instrucción aquí..." required></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary" id="submitBtn">
@@ -120,8 +207,8 @@
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const instruction = document.getElementById('instruction').value.trim();
 
+            const instruction = document.getElementById('instruction').value.trim();
             if (!instruction) {
                 status.textContent = 'Por favor, ingresa una instrucción.';
                 status.className = 'error';
@@ -160,5 +247,6 @@
         });
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
