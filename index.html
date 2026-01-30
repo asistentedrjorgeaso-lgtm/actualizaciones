@@ -12,7 +12,7 @@
 
     <style>
         body {
-            background: #ffffff; /* FONDO BLANCO */
+            background: #ffffff;
             font-family: 'Poppins', sans-serif;
             min-height: 100vh;
             display: flex;
@@ -24,18 +24,6 @@
             position: relative;
         }
 
-        /* SE ELIMINA SOLO EL GRÁFICO DEL FONDO */
-        /* body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"%3E%3Cpath fill="%23ffffff" fill-opacity="0.05" d="M0 0h80v80H0z"/%3E%3Cpath fill="%23ffffff" fill-opacity="0.1" d="M40 0l40 40-40 40-40-40z"/%3E%3C/svg%3E') repeat;
-            z-index: 0;
-        } */
-
         .container {
             max-width: 700px;
             background: rgba(255, 255, 255, 0.05);
@@ -43,7 +31,7 @@
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
-                        0 0 20px rgba(0, 123, 255, 0.3);
+                        0 0 20px rgba(13, 110, 253, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             z-index: 1;
@@ -52,35 +40,35 @@
         .container:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6),
-                        0 0 30px rgba(0, 123, 255, 0.5);
+                        0 0 30px rgba(13, 110, 253, 0.5);
         }
 
         h1 {
             text-align: center;
-            color: #00c6ff;
+            color: #0d6efd; /* COLOR SUAVIZADO */
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
             margin-bottom: 30px;
             position: relative;
-            text-shadow: 0 0 10px rgba(0, 198, 255, 0.7);
+            text-shadow: 0 0 6px rgba(13, 110, 253, 0.4);
         }
 
         h1::after {
             content: '';
             width: 60px;
             height: 4px;
-            background: linear-gradient(90deg, #007bff, #00c6ff);
+            background: linear-gradient(90deg, #0d6efd, #6ea8fe);
             position: absolute;
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            box-shadow: 0 0 10px #007bff;
+            box-shadow: 0 0 6px rgba(13, 110, 253, 0.5);
         }
 
         .form-label {
             font-weight: 600;
-            color: #00c6ff;
-            text-shadow: 0 0 5px rgba(0, 198, 255, 0.5);
+            color: #0d6efd;
+            text-shadow: 0 0 4px rgba(13, 110, 253, 0.4);
         }
 
         textarea {
@@ -88,19 +76,8 @@
             min-height: 200px;
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(0, 123, 255, 0.5);
+            border: 1px solid rgba(13, 110, 253, 0.5);
             color: #ffffff;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        textarea::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        textarea:focus {
-            border-color: #00c6ff;
-            box-shadow: 0 0 0 0.25rem rgba(0, 198, 255, 0.25),
-                        0 0 15px rgba(0, 198, 255, 0.5);
         }
 
         .btn-primary {
@@ -109,52 +86,8 @@
             font-size: 18px;
             font-weight: 600;
             border-radius: 10px;
-            background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+            background: linear-gradient(90deg, #0d6efd 0%, #6ea8fe 100%);
             border: none;
-            color: #ffffff;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(90deg, #00c6ff 0%, #007bff 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(0, 198, 255, 0.7);
-        }
-
-        .btn-primary:disabled {
-            background: linear-gradient(90deg, #6c757d 0%, #495057 100%);
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-
-        #status {
-            margin-top: 20px;
-            text-align: center;
-            font-weight: 600;
-            padding: 10px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid transparent;
-        }
-
-        .success {
-            color: #00ff85;
-            border-color: #00ff85;
-            box-shadow: 0 0 10px #00ff85;
-        }
-
-        .error {
-            color: #ff4d4d;
-            border-color: #ff4d4d;
-            box-shadow: 0 0 10px #ff4d4d;
-        }
-
-        .loading {
-            color: #ffd700;
-            border-color: #ffd700;
-            box-shadow: 0 0 10px #ffd700;
         }
 
         .icon-header {
@@ -164,8 +97,8 @@
 
         .icon-header i {
             font-size: 50px;
-            color: #00c6ff;
-            text-shadow: 0 0 15px rgba(0, 198, 255, 0.7);
+            color: #0d6efd; /* COLOR SUAVIZADO */
+            text-shadow: 0 0 8px rgba(13, 110, 253, 0.5);
             animation: pulse 2s infinite;
         }
 
@@ -189,64 +122,14 @@
         <form id="updateForm">
             <div class="mb-3">
                 <label for="instruction" class="form-label">Nueva Instrucción o Actualización</label>
-                <textarea class="form-control" id="instruction" rows="6" placeholder="Escribe la nueva instrucción aquí..." required></textarea>
+                <textarea class="form-control" id="instruction" placeholder="Escribe la nueva instrucción aquí..." required></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary" id="submitBtn">
+            <button type="submit" class="btn btn-primary">
                 Enviar Actualización <i class="fas fa-paper-plane ms-2"></i>
             </button>
         </form>
-
-        <div id="status"></div>
     </div>
 
-    <script>
-        const form = document.getElementById('updateForm');
-        const status = document.getElementById('status');
-        const submitBtn = document.getElementById('submitBtn');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const instruction = document.getElementById('instruction').value.trim();
-            if (!instruction) {
-                status.textContent = 'Por favor, ingresa una instrucción.';
-                status.className = 'error';
-                return;
-            }
-
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = 'Enviando... <i class="fas fa-spinner fa-spin ms-2"></i>';
-            status.textContent = 'Procesando...';
-            status.className = 'loading';
-
-            const webhookUrl = 'https://dr-jorge-aso-n8n.pmsak1.easypanel.host/webhook-test/8dab3752-43d0-4618-a387-5e38ad96c935';
-
-            try {
-                const response = await fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ update: instruction }),
-                });
-
-                if (response.ok) {
-                    status.textContent = '¡Actualización enviada exitosamente!';
-                    status.className = 'success';
-                    form.reset();
-                } else {
-                    status.textContent = 'Error al enviar la actualización.';
-                    status.className = 'error';
-                }
-            } catch (error) {
-                status.textContent = 'Error de conexión.';
-                status.className = 'error';
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = 'Enviar Actualización <i class="fas fa-paper-plane ms-2"></i>';
-            }
-        });
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
